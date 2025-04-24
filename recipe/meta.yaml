@@ -24,7 +24,6 @@ requirements:
     - automake
     - libtool
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
   host:
   run:
 
