@@ -24,7 +24,6 @@ requirements:
     - automake
     - libtool
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
   host:
   run:
 
@@ -38,6 +37,7 @@ about:
   license_family: GPL
   license_file: COPYING
   summary: Advanced Linux Sound Architecture
+  description: Advanced Linux Sound Architecture
 
 extra:
   recipe-maintainers:
