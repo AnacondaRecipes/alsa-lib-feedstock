@@ -1,12 +1,13 @@
-{% set version = "1.2.14" %}
+{% set name = "alsa-lib" %}
+{% set version = "1.2.15.3" %}
 
 package:
-  name: alsa-lib
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/alsa-project/alsa-lib/archive/v{{ version }}.tar.gz
-  sha256: a7bc6c09f0e5a622ebc8afb63a194aa1396145b5c6433d3445363201d96c23c4
+  sha256: 7a3bee640f1c29fdfa3d1f922185929b546f012c27a73bbb6b424d12488c3c8e
 
 build:
   number: 0
@@ -19,25 +20,26 @@ build:
 
 requirements:
   build:
+    - {{ stdlib("c") }}
+    - {{ compiler('c') }}
     - make
     - autoconf
     - automake
     - libtool
-    - {{ compiler('c') }}
-  host:
-  run:
 
 test:
   commands:
-    - test -f $PREFIX/lib/libasound$SHLIB_EXT
+    - test -f $PREFIX/lib/libasound${SHLIB_EXT}
 
 about:
   home: http://www.alsa-project.org/main/index.php/Main_Page
   license: LGPL-2.1-or-later
-  license_family: GPL
+  license_family: LGPL
   license_file: COPYING
   summary: Advanced Linux Sound Architecture
   description: Advanced Linux Sound Architecture
+  dev_url: https://www.alsa-project.org/wiki/Download
+  doc_url: https://www.alsa-project.org/wiki/Documentation
 
 extra:
   recipe-maintainers:
