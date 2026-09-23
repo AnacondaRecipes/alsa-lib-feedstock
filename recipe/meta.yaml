@@ -1,13 +1,18 @@
 {% set name = "alsa-lib" %}
-{% set version = "1.2.15.3" %}
+{% set version = "1.2.16.1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/alsa-project/alsa-lib/archive/v{{ version }}.tar.gz
-  sha256: 7a3bee640f1c29fdfa3d1f922185929b546f012c27a73bbb6b424d12488c3c8e
+  # Official alsa-project.org release tarball (not the GitHub archive):
+  # it ships a pre-generated ./configure + Makefile.in, so the build does
+  # not need to run autoreconf. This avoids a hard `AC_PREREQ([2.72])`
+  # requirement introduced upstream in 1.2.16 that pkgs/main's autoconf
+  # (capped at 2.71) cannot satisfy.
+  url: https://www.alsa-project.org/files/pub/lib/alsa-lib-{{ version }}.tar.bz2
+  sha256: f740db7f488255944ffd4428416ee3390a96742856916433df468c281436480e
 
 build:
   number: 0
@@ -23,16 +28,13 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - make
-    - autoconf
-    - automake
-    - libtool
 
 test:
   commands:
     - test -f $PREFIX/lib/libasound${SHLIB_EXT}
 
 about:
-  home: http://www.alsa-project.org/main/index.php/Main_Page
+  home: https://www.alsa-project.org/main/index.php/Main_Page
   license: LGPL-2.1-or-later
   license_family: LGPL
   license_file: COPYING
