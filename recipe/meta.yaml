@@ -11,7 +11,7 @@ source:
   # not need to run autoreconf. This avoids a hard `AC_PREREQ([2.72])`
   # requirement introduced upstream in 1.2.16 that pkgs/main's autoconf
   # (capped at 2.71) cannot satisfy.
-  url: https://www.alsa-project.org/files/pub/lib/alsa-lib-{{ version }}.tar.bz2
+  url: https://www.alsa-project.org/files/pub/lib/{{ name }}-{{ version }}.tar.bz2
   sha256: f740db7f488255944ffd4428416ee3390a96742856916433df468c281436480e
 
 build:
